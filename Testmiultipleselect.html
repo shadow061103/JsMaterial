@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <link href="../_css/site.css" rel="stylesheet">
+    <script src="../_js/jquery.min.js"></script>
+    <script src="../_js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+          
+
+            $('#btnTop').click(function (event) {
+                console.log('class:'+$(this).attr('class'));
+
+                $('#OrgList option:selected').each(function () {
+                    var x = document.getElementById("ChooseList");
+                    if ($(this).val() == "BBBB" && x.options.length > 0)
+                    {
+                        alert('BBBB不可跟其他類別一起');
+                        return false;
+                    }
+
+                    for (var i = 0; i < x.options.length; i++)
+                    {
+                       
+                        if (x.options[i].value == "BBBB")
+                        {  //x.options[x.selectedIndex].value取得選到的值
+                            alert('BBBB不可跟其他類別一起');
+                            return false;
+                        }
+                    }
+                    $('#ChooseList').append("<option value='" + $(this).val() + "'>" + $(this).text() + "</option>")
+                    $(this).remove();
+                    if ($(this).val() == "BBBB")
+                    {
+                        console.log('show');
+                        $('.test').css('display', 'block');
+                    }
+
+                });
+            });
+            $('#btnDown').click(function () {
+                $('#ChooseList option:selected').each(function () {
+                    if ($(this).val() == "BBBB")
+                    {
+                        $('.test').css('display', 'none');
+                    }
+
+                    $('#OrgList').append("<option value='" + $(this).val() + "'>" + $(this).text() + "</option>")
+                    $(this).remove();
+                });
+            });
+           
+
+        });
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <select id="OrgList" multiple style="width: 400px; height: 250px;">
+                    <option value="AAAA">AAAA</option>
+                    <option value="BBBB">BBBB</option>
+                    <option value="CCCC">CCCC</option>
+                    <option value="DDDD">DDDD</option>
+                    <option value="EEEE">EEEE</option>
+                    
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                <input type="button" id="btnTop" class="btnTop" name="btnDown" value="下移" />
+                &nbsp;&nbsp;&nbsp;
+                <input type="button" id="btnDown" class="btnDown" name="btnTop" value="上移" />
+
+            </td>
+        </tr>
+        <tr>
+            <td><select id="ChooseList"  multiple style="width: 400px; height: 250px;"></select></td>
+
+        </tr>
+        <tr class="test" style="display:none">
+            <td>
+                <label>面額</label><input type="text" /><br/>
+                <label>幣別</label>
+                
+               
+                <select id="aa"">
+                    <option value="">請選擇</option>
+                    <option value="TWD">台幣</option>
+                    <option value="USD">美金</option>
+                    <option value="JPY">日幣</option>
+                </select>
+
+            </td>
+        </tr>
+
+        
+    </table>
+    
+
+   
+</body>
+</html>
