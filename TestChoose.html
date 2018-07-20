@@ -13,41 +13,29 @@
             $('.clsAll').change(function () {
                 if ($(this).prop('checked')) {
                     $('.chk').prop('checked', true);
-                    $('.chk').addClass('ischecked');
+                    
                 }
                 else {
                     $('.chk').prop('checked', false);
-                    $('.chk').removeClass('ischecked');
+                   
                 }
             });
             $('.chk').click(function () {
                 if ($(this).prop('checked')) {
-                    if (!$(this).hasClass('ischecked')) {
-                        $(this).addClass('ischecked');
-                    }
-                    var list = $('.ischecked').get().length;
+                    
+                    var list = $('.chk:checked').get().length;
                     console.log(list);
                     if (list > 1)
                     {
-                        $(this).removeClass('ischecked')
-                        $(this).prop('checked', false);
+                         $(this).prop('checked', false);
                         alert('不可同時勾選超過3筆或以上(測試用 不擋也沒差)');
                         return;
                     }
-                   
                 }
-                else {
-                    if($(this).hasClass('ischecked'))
-                    {
-                        $(this).removeClass('ischecked')
-                    }
-                }
-
-
+                
             });
             $('#delete').click(function () {
-               // $('.ischecked').parents('tr').css('display', 'none');
-                $('.ischecked').parents('tr').remove();
+                $('.chk:checked').parents('tr').remove();
             });
 
         });
